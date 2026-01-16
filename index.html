@@ -1,157 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simelior</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simelior Inc. | Future Holdings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #1a1a1a;
+            --accent: #0076c5;
+            --subtle: #f4f4f7;
+            --border: #e1e1e8;
+        }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      background: #f9f9fb;
-      color: #222;
-      overflow: hidden;
-    }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    header {
-      background: #fff;
-      padding: 1.5rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #eee;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #0f172a;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      /* Adds space between text and logo */
-    }
+        header {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem 2rem;
-      background: linear-gradient(to right, #9c9c9c, #0076c5);
-      text-align: center;
-    }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
 
-    .hero-text {
-      max-width: 600px;
-    }
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+        }
 
-    .hero-text h1 {
-      font-size: 3rem;
-      font-weight: 800;
+        /* Hero Section */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
 
-    }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem); /* Slightly adjusted for wider layout */
+            font-weight: 800;
+            line-height: 1.05;
+            margin-bottom: 2rem;
+            letter-spacing: -0.05em;
+            max-width: 1000px; /* Keeps the heading from stretching too far */
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-    .hero-text p {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #374151;
-    }
+        .tagline {
+            font-size: 1.25rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+        }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 6rem 4rem;
-      background: #ffffff;
-    }
+      
+        .holdings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
 
-    .feature-card {
-      background: #f1f5f9;
-      padding: 2rem;
-      border-radius: 0.5rem;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
+        
+        @media (max-width: 900px) {
+            .holdings-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            h1 {
+                font-size: 3rem;
+            }
+        }
 
-    .feature-card h3 {
-      margin-bottom: 0.5rem;
-      color: #0f172a;
-    }
+        .card {
+            background: var(--subtle);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: left;
+            transition: transform 0.2s ease;
+        }
 
-    .feature-card p {
-      color: #475569;
-    }
+        .card:hover { transform: translateY(-4px); }
 
-    footer {
-      background: #0f172a;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      margin-top: 4rem;
-    }
+        .card h3 { margin-bottom: 0.75rem; font-weight: 600; }
+        .card p { font-size: 0.95rem; color: #555; }
 
-    footer a {
-      color: #60a5fa;
-      text-decoration: none;
-    }
+        /* Powered By Section */
+        .stack-section {
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
 
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-    }
-  </style>
+        .stack-section p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #999;
+            margin-bottom: 2rem;
+        }
+
+        .stack-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            filter: grayscale(1) opacity(0.6);
+        }
+
+        .stack-logos img {
+            height: 32px; /* Set a consistent height */
+            width: auto;
+            max-width: 120px; /* Prevents logos from being too wide */
+            object-fit: contain;
+            filter: grayscale(1) opacity(0.5); /* Keeps the "low-profile" holding company look */
+            transition: filter 0.3s ease;
+        }
+
+        .stack-logos img:hover {
+            filter: grayscale(0) opacity(1); /* Full color on hover for a nice interactive touch */
+        }
+
+        .stack-logos span {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #444;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: var(--subtle);
+        }
+
+        .contact-btn {
+            display: inline-block;
+            background: var(--text);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .copy {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .stack-logos { gap: 1.5rem; }
+            main { padding: 2rem 1rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <header>
-    <div class="logo">Simelior<img src="./public/simelior.svg" alt="Simelior Logo" style="width: 64px; height: 64px;" />
-    </div>
-  </header>
+    <header>
+        <div class="logo-container">
+            <img src="./public/simelior.svg" alt="Simelior Logo" style="width: 40px; height: 40px;" onerror="this.style.display='none'">
+            <span class="logo-text">Simelior Inc.</span>
+        </div>
+    </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Foundational</h1>
-      <p>Simelior helps you build, optimize, and manage modern technologies to scale your businesses.</p>
-    </div>
-  </section>
+    <main>
+        <h1>Strategic Infrastructure. <br>Built to Scale.</h1>
+        <p class="tagline">A private holding company managing a portfolio of technical ventures, from AI-driven operating systems to advanced aircraft engineering.</p>
 
-  <section id="projects" class="projects">
-    <div class="feature-card">
-      <h3>📂 Document Management</h3>
-      <p>Securely manage your corporate records, contracts, and minutes in one place. Get access to conveyance agents at
-        no costs as well as document librairies for your endevors.</p>
-    </div>
-    <div class="feature-card">
-      <h3>🤖 Automations</h3>
-      <p>Manage daily operations with agents working together around the clock for you. Your project's contexts are
-        stored and accessible keeping your agents focused at their tasks.</p>
-    </div>
-    <div class="feature-card">
-      <h3>📈 Real-Time Insights</h3>
-      <p>Visualize performance and make informed decisions based on live data. Track expenses, plan budgets, and
-        generate detailed reports.</p>
-    </div>
-  </section>
+        <div class="holdings-grid">
+            <div class="card">
+                <h3>Venture Capital</h3>
+                <p>Deploying capital and resources into high-growth assets and modern technical infrastructures.</p>
+            </div>
+            <div class="card">
+                <h3>Engineering & R&D</h3>
+                <p>Overseeing specialized projects in aircraft structure design and automated systems.</p>
+            </div>
+            <div class="card">
+                <h3>Digital Portfolio</h3>
+                <p>Managing a suite of sub-entities focused on AI integration and software development.</p>
+            </div>
+        </div>
 
-  <footer id="contact">
-    <p>© 2025 Simelior Inc.</p>
-    <a href="mailto:management@simelior.ca">management@simelior.ca</a>
-  </footer>
+            <section class="stack-section">
+            <p>Operational Infrastructure Powered By</p>
+            <div class="stack-logos">
+                <img src="./public/bmo.svg" alt="BMO">
+                <img src="./public/rogers.svg" alt="Rogers">
+                <img src="./public/ollama.svg" alt="Ollama">
+                <img src="./public/float.svg" alt="Float">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Inquiries regarding holdings or sub-entities:</p>
+        <a href="mailto:management@simelior.ca" class="contact-btn">management@simelior.ca</a>
+        <p class="copy">© 2026 Simelior Inc. | Federal Corporation</p>
+    </footer>
 
 </body>
-
 </html>
